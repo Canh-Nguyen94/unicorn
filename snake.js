@@ -1,13 +1,19 @@
-window.addEventListener('load', runGame());
+window.addEventListener('load', runGame);
+window.addEventListener('resize', adjustCanvasSize);
+
+
 function runGame() {
     console.log('Ready to run game')
 }
 const canvas = document.getElementById('snake-board');
 const ctx = canvas.getContext('2d');
-const startBtn = document.getElementById('start-btn');
 
-canvas.width = 800;
-canvas.height = 500;
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+function adjustCanvasSize() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+}
 
 let animationId;
 const background = new Image();
@@ -16,8 +22,9 @@ let frame = 0;
 let score1 = 0;
 let score2 = 0;
 let score3 = 0;
-const windPoints = 20;
+let windPoints = 20;
 let gamespeed = 4;
+let hue = 0;
 const snakeSprite = new Image();
 const snakeSprite1 = new Image();
 const budweiser = new Image();
@@ -36,7 +43,7 @@ const earnGift1 = document.createElement('AUDIO');
 earnGift1.src = 'Plop.ogg';
 const earnGift2 = document.createElement('audio');
 earnGift2.src = 'bubles-single2.wav';
-gameSound.play();
+
 class Snake {
     constructor() {
         this.x = Math.random() * canvas.width;

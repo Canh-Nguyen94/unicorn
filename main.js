@@ -1,3 +1,8 @@
+const startBtn = document.getElementById('start-btn');
+const restartBtn = document.getElementById('restart-btn');
+startBtn.addEventListener('click', startGame);
+restartBtn.addEventListener('click', restartGame);
+
 const BG = {
     x1: 0,
     x2: canvas.width,
@@ -23,15 +28,29 @@ function animate() {
     ctx.fillStyle = 'black';
     ctx.font = "25px Georgia";
     ctx.fillText('Budweiser:' + score1, 10, 50);
-    ctx.fillText('Corona:' + score2, 200, 50);
-    ctx.fillText('Heineken:' + score3, 400, 50);
+    ctx.fillText('Corona:' + score2, 10, 100);
+    ctx.fillText('Heineken:' + score3, 10, 150);
+    ctx.fillText('Win points:' + windPoints, canvas.width - 170, 50);
     handleGifts()
+    // handlePArticles()
     if (handleGifts()) return;
     animationId = requestAnimationFrame(animate)
     frame++;
 }
 
-function stopGame() {
-    cancelAnimationFrame(animationId);
+function startGame() {
+    startBtn.style.display = 'none';
+    gameSound.play();
+    animate();
 }
-animate();
+function restartGame() {
+    frame = 0;
+    score1 = 0;
+    score2 = 0;
+    score3 = 0;
+    windPoints += 5;
+    gamespeed = 4;
+    restartBtn.style.display = 'none';
+    winBanner.style.display = 'none';
+    animate();
+}

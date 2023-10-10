@@ -1,3 +1,4 @@
+const winBanner = document.getElementById('win-banner');
 const giftArray = [];
 
 class Gift {
@@ -5,7 +6,7 @@ class Gift {
         this.name = name;
         this.width = 50;
         this.height = 50;
-        this.x = Math.random() * 800 - this.width;
+        this.x = Math.random() * canvas.width - this.width;
         this.y = 0;
         this.dx = gamespeed;
         this.dy = gamespeed;
@@ -28,21 +29,24 @@ class Gift {
 }
 
 function gameEnd(name) {
-    ctx.font = "25px Georgia";
-    ctx.fillStyle = "white";
-    ctx.fillText("Game End, winner is " + name, 160, canvas.height / 2 - 10);
+    winBanner.innerText = "Game End, winner is " + name;
+    winBanner.style.display = 'block';
+    // ctx.font = "25px Georgia";
+    // ctx.fillStyle = "white";
+    // ctx.fillText("Game End, winner is " + name, cavas.width / 2 - 20, canvas.height / 2 - 10);
+    restartBtn.style.display = 'block';
 }
 
 function handleGifts() {
-    if (score1 >= 20) {
+    if (score1 >= windPoints) {
         gameEnd('budweiser')
         return true;
     }
-    if (score2 >= 20) {
+    if (score2 >= windPoints) {
         gameEnd('corona')
         return true;
     }
-    if (score3 >= 20) {
+    if (score3 >= windPoints) {
         gameEnd('heineken')
         return true;
     }

@@ -5,6 +5,7 @@
 }
 
 body {
+  position: relative;
   width: 100vw;
   height: 100vh;
   display: flex;
@@ -13,11 +14,35 @@ body {
 }
 
 #snake-board {
+  width: 100vw;
+  height: 90vh;
+  /* border: 2px solid black; */
+}
+
+#start-btn,
+#restart-btn {
+  font-size: 24px;
   position: absolute;
-  width: 800px;
-  height: 500px;
   top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  border: 2px solid black;
+  left: calc(50%-12%);
+  width: 24%;
+  outline: none;
+  border-radius: 10px;
+  z-index: 99;
+}
+#start-btn {
+  display: block;
+}
+#restart-btn {
+  display: none;
+}
+
+#win-banner {
+  font-size: 24px;
+  position: absolute;
+  width: 100%;
+  top: 40%;
+  left: 0;
+  text-align: center;
+  display: none;
 }
